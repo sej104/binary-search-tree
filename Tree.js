@@ -10,32 +10,18 @@ class Tree {
 
     array = [...new Set(array)].sort((x, y) => x - y);
 
-    const mid = Math.floor(array.length / 2);
-    const root = new Node(array[mid]);
+    function createBST(start, end) {
+      if (start > end) return null;
 
-    const queue = [{ node: root, range: [0, array.length - 1] }];
+      const mid = Math.floor((start + end) / 2);
+      const root = new Node(array[mid]);
 
-    while (queue.length) {
-      const front = queue.shift();
-      const parent = front.node;
-      const [start, end] = front.range;
-      const index = start + Math.floor((end - start) / 2);
+      root.left = createBST(start, mid - 1);
+      root.right = createBST(mid + 1, end);
 
-      if (start < index) {
-        const midLeft = start + Math.floor((index - 1 - start) / 2);
-        const leftChild = new Node(array[midLeft]);
-        parent.left = leftChild;
-        queue.push({ node: leftChild, range: [start, index - 1] });
-      }
-
-      if (end > index) {
-        const midRight = index + 1 + Math.floor((end - index - 1) / 2);
-        const rightChid = new Node(array[midRight]);
-        parent.right = rightChid;
-        queue.push({ node: rightChid, range: [index + 1, end] });
-      }
+      return root;
     }
-    return root;
+    return createBST(0, array.length - 1);
   }
 
   insert(value) {
