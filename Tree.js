@@ -123,6 +123,16 @@ class Tree {
     callback(root);
     this.inOrder(callback, root.right);
   }
+
+  preOrder(callback, root = this.root) {
+    if (!callback) throw new Error("Callback must be provided");
+
+    if (!root) return;
+
+    callback(root);
+    this.preOrder(callback, root.left);
+    this.preOrder(callback, root.right);
+  }
 }
 
 export default Tree;
