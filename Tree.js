@@ -72,6 +72,17 @@ class Tree {
 
     delNode(this.root, value);
   }
+
+  find(value) {
+    let current = this.root;
+
+    while (current) {
+      if (value < current.data) current = current.left;
+      else if (value > current.data) current = current.right;
+      else return current;
+    }
+    return null;
+  }
 }
 
 export default Tree;
