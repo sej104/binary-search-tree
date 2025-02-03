@@ -113,6 +113,16 @@ class Tree {
 
     this.levelOrderRecursive(callback, newQueue);
   }
+
+  inOrder(callback, root = this.root) {
+    if (!callback) throw new Error("Callback must be provided");
+
+    if (!root) return;
+
+    this.inOrder(callback, root.left);
+    callback(root);
+    this.inOrder(callback, root.right);
+  }
 }
 
 export default Tree;
