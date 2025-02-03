@@ -97,6 +97,22 @@ class Tree {
       if (current.right) queue.push(current.right);
     }
   }
+
+  levelOrderRecursive(callback, queue = [this.root]) {
+    if (!callback) throw new Error("Callback must be provided");
+
+    if (!queue.length || !this.root) return;
+
+    const newQueue = [];
+
+    queue.forEach((node) => {
+      callback(node);
+      if (node.left) newQueue.push(node.left);
+      if (node.right) newQueue.push(node.right);
+    });
+
+    this.levelOrderRecursive(callback, newQueue);
+  }
 }
 
 export default Tree;
