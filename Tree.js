@@ -161,6 +161,23 @@ class Tree {
     }
     return null;
   }
+
+  height(node) {
+    function findHeight(root, height = 0) {
+      let leftHeight = height;
+      let rightHeight = height;
+
+      if (root.left) leftHeight = findHeight(root.left, height + 1);
+      if (root.right) rightHeight = findHeight(root.right, height + 1);
+
+      return leftHeight > rightHeight ? leftHeight : rightHeight;
+    }
+
+    let current = this.find(node.data);
+    if (!current) return null;
+
+    return findHeight(current);
+  }
 }
 
 export default Tree;
