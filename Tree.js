@@ -143,6 +143,24 @@ class Tree {
     this.postOrder(callback, root.right);
     callback(root);
   }
+
+  depth(node) {
+    if (!this.root || !node.data) return null;
+
+    let current = this.root;
+    let depth = 0;
+
+    while (current) {
+      if (node.data < current.data) {
+        current = current.left;
+        depth += 1;
+      } else if (node.data > current.data) {
+        current = current.right;
+        depth += 1;
+      } else return depth;
+    }
+    return null;
+  }
 }
 
 export default Tree;
