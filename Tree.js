@@ -7,7 +7,6 @@ class Tree {
 
   buildTree(array) {
     if (!array.length) return null;
-
     array = [...new Set(array)].sort((x, y) => x - y);
 
     function createBST(start, end) {
@@ -21,6 +20,7 @@ class Tree {
 
       return root;
     }
+
     return createBST(0, array.length - 1);
   }
 
@@ -44,6 +44,33 @@ class Tree {
 
     if (value < parent.data) parent.left = new Node(value);
     else parent.right = new Node(value);
+  }
+
+  deleteItem(value) {
+    function findSuccessor(root) {
+      root = root.right;
+      while (root.left) root = root.left;
+      return root;
+    }
+
+    function delNode(root, value) {
+      if (root === null) return root;
+
+      if (value < root.data) root.left = delNode(root.left, value);
+      else if (value > root.data) root.right = delNode(root.right, value);
+      else {
+        if (root.left === null) return root.right;
+        if (root.right === null) return root.left;
+
+        const successor = findSuccessor(root);
+        root.data = successor.data;
+        root.right = delNode(root.right, successor.data);
+      }
+
+      return root;
+    }
+
+    delNode(this.root, value);
   }
 }
 
