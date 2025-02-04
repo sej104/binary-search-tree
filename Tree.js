@@ -95,7 +95,6 @@ class Tree {
 
   levelOrderRecursive(callback, queue = [this.root]) {
     if (!callback) throw new Error("Callback must be provided");
-
     if (!queue.length || !this.root) return;
 
     const newQueue = [];
@@ -137,7 +136,7 @@ class Tree {
   }
 
   depth(node) {
-    if (!this.root || !node.data) return null;
+    if (!this.root || !node || !node.data) return null;
 
     let current = this.root;
     let depth = 0;
