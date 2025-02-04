@@ -42,14 +42,14 @@ class Tree {
   }
 
   deleteItem(value) {
-    function findSuccessor(root) {
+    const findSuccessor = (root) => {
       root = root.right;
       while (root.left) root = root.left;
       return root;
-    }
+    };
 
-    function delNode(root, value) {
-      if (root === null) return root;
+    const delNode = (root, value) => {
+      if (!root) return null;
 
       if (value < root.data) root.left = delNode(root.left, value);
       else if (value > root.data) root.right = delNode(root.right, value);
@@ -63,6 +63,12 @@ class Tree {
       }
 
       return root;
+    };
+
+    if (value === this.root.data && (!this.root.left || !this.root.right)) {
+      if (!this.root.left) this.root = this.root.right;
+      else this.root = this.root.left;
+      return;
     }
 
     delNode(this.root, value);
