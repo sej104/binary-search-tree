@@ -162,7 +162,7 @@ class Tree {
     return null;
   }
 
-  height(node) {
+  height(node = this.root) {
     function findHeight(root, height = 0) {
       let leftHeight = height;
       let rightHeight = height;
@@ -177,6 +177,18 @@ class Tree {
     if (!current) return null;
 
     return findHeight(current);
+  }
+
+  isBalanced() {
+    if (!this.root) return false;
+
+    let leftHeight = 0;
+    let rightHeight = 0;
+
+    if (this.root.left) leftHeight = this.height(this.root.left) + 1;
+    if (this.root.right) rightHeight = this.height(this.root.right) + 1;
+
+    return Math.abs(leftHeight - rightHeight) <= 1;
   }
 }
 
