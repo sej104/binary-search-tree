@@ -71,7 +71,7 @@ class Tree {
   find(value) {
     let current = this.root;
 
-    while (current) {
+    while (current && value) {
       if (value < current.data) current = current.left;
       else if (value > current.data) current = current.right;
       else return current;
