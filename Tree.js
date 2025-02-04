@@ -111,7 +111,6 @@ class Tree {
 
   inOrder(callback, root = this.root) {
     if (!callback) throw new Error("Callback must be provided");
-
     if (!root) return;
 
     this.inOrder(callback, root.left);
@@ -121,7 +120,6 @@ class Tree {
 
   preOrder(callback, root = this.root) {
     if (!callback) throw new Error("Callback must be provided");
-
     if (!root) return;
 
     callback(root);
@@ -131,7 +129,6 @@ class Tree {
 
   postOrder(callback, root = this.root) {
     if (!callback) throw new Error("Callback must be provided");
-
     if (!root) return;
 
     this.postOrder(callback, root.left);
