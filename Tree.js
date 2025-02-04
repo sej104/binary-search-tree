@@ -153,8 +153,8 @@ class Tree {
     return null;
   }
 
-  height(node = this.root) {
-    function findHeight(root, height = 0) {
+  height(node) {
+    const findHeight = (root, height = 0) => {
       let leftHeight = height;
       let rightHeight = height;
 
@@ -162,7 +162,9 @@ class Tree {
       if (root.right) rightHeight = findHeight(root.right, height + 1);
 
       return leftHeight > rightHeight ? leftHeight : rightHeight;
-    }
+    };
+
+    if (!node || !node.data) return null;
 
     let current = this.find(node.data);
     if (!current) return null;
