@@ -81,7 +81,7 @@ class Tree {
 
   levelOrder(callback) {
     if (!callback) throw new Error("Callback must be provided");
-    if (!this.root) return null;
+    if (!this.root) return;
 
     const queue = [this.root];
 
