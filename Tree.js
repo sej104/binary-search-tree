@@ -190,6 +190,12 @@ class Tree {
 
     return Math.abs(leftHeight - rightHeight) <= 1;
   }
+
+  rebalance() {
+    const array = [];
+    this.inOrder((node) => array.push(node.data));
+    this.root = this.buildTree(array);
+  }
 }
 
 export default Tree;
