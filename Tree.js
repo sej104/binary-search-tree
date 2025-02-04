@@ -6,10 +6,7 @@ class Tree {
   }
 
   buildTree(array) {
-    if (!array.length) return null;
-    array = [...new Set(array)].sort((x, y) => x - y);
-
-    function createBST(start, end) {
+    const createBST = (start, end) => {
       if (start > end) return null;
 
       const mid = Math.floor((start + end) / 2);
@@ -19,8 +16,11 @@ class Tree {
       root.right = createBST(mid + 1, end);
 
       return root;
-    }
+    };
 
+    if (!array.length) return null;
+
+    array = [...new Set(array)].sort((x, y) => x - y);
     return createBST(0, array.length - 1);
   }
 
