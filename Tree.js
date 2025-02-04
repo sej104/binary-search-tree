@@ -31,15 +31,10 @@ class Tree {
     let current = this.root;
 
     while (current) {
-      if (value < current.data) {
-        parent = current;
-        current = current.left;
-      } else if (value > current.data) {
-        parent = current;
-        current = current.right;
-      } else {
-        return;
-      }
+      parent = current;
+      if (value < current.data) current = current.left;
+      else if (value > current.data) current = current.right;
+      else return;
     }
 
     if (value < parent.data) parent.left = new Node(value);
